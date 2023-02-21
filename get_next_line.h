@@ -7,6 +7,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-char	*ft_get_next_line(int fd);
+char	*get_next_line(int fd);
+void	*ft_find_end_line(char *b);
 
 #endif

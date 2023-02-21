@@ -6,13 +6,21 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/19 17:10:20 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:14:10 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	putchette(char c)
+static void	*ft_find_end_line(char *b)
 {
-	write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	while (b[i])
+	{
+		if (b[i] == '\n')
+			return (&b[i]);
+	}
+	return (NULL);
 }
