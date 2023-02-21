@@ -1,8 +1,8 @@
 NAME		= a.out
 
-CC			= gcc
+CC			= gcc -g
 CFLAGS		= -Wall -Wextra
-BFLAGS		= -D BUFFER_SIZE=n
+BFLAGS		= -D BUFFER_SIZE=10
 
 SRC			= main.c get_next_line.c get_next_line_utils.c
 DEPS		= get_next_line.h
@@ -10,7 +10,7 @@ OBJ			= $(SRC:.c=.o)
 
 
 %.o: %.c $(DEPS)
-	$(CC) $(CFLAGS) -I. -c $< -o $@
+	$(CC) $(CFLAGS) $(BFLAGS) -I. -c $< -o $@
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/19 18:55:27 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:28:24 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char *ft_get_next_line(int fd)
 {
-	int	ret;
-	char	buf[10];
+	int		bytes_read;
 
-	static int x = 0;
-	ret = read(fd, buf, 10);
-	printf("ret = %d\n", ret);
-	x++;
-	printf("x = %d\n", x);
-	return (0);
+	static char	buf[BUFFER_SIZE + 1];
+
+	bytes_read = read(fd, buf, BUFFER_SIZE);
+	if (bytes_read == BUFFER_SIZE)
+		buf[bytes_read] = '\n';
+	
+	//printf("bytes_read = %d\n", bytes_read);
+	//printf("%s", buf);
+	return (buf);
 }
