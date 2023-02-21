@@ -14,5 +14,6 @@
 
 char	*get_next_line(int fd);
 int		ft_find_end_line(char *b);
+char	*ft_create_ptr(char *s, char *b);
 
 #endif
