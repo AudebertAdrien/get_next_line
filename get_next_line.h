@@ -3,6 +3,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -12,6 +13,6 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_find_end_line(char *b);
+int		ft_find_end_line(char *b);
 
 #endif

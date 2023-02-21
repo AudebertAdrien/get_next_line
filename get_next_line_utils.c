@@ -6,13 +6,13 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/21 11:39:23 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:50:57 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_find_end_line(char *b)
+int	ft_find_end_line(char *b)
 {
 	int	i;
 
@@ -20,8 +20,21 @@ char	*ft_find_end_line(char *b)
 	while (b[i])
 	{
 		if (b[i] == '\n')
-			return (&b[i]);
+			return (i + 1);
 		i++;
 	}
-	return (NULL);
+	return (0);
+}
+
+int	ft_count_all_occurence(char c)
+{
+	int	count;
+
+	count = 0;
+	while (read(fd, buf, BUFFER_SIZE))
+	{
+		if (ft_find_end_line(buf))
+			count++;
+	}
+	return (count);
 }
