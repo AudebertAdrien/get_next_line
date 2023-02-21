@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/21 09:12:16 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:52:37 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 char *get_next_line(int fd)
 {
 	int		bytes_read;
-	void	res;
+	int		is_found;
 
-	static char	buf[BUFFER_SIZE + 1];
+	is_found = 0;
+	static char	buf[BUFFER_SIZE];
+	while (!is_found)
+	{
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		
+		if (ft_find_end_line(buf))
+		{
+			is_found = 1;
+		}
+	}
 
-	bytes_read = read(fd, buf, BUFFER_SIZE);
-	
-	res = ft_find_end_line(buf)
-	printf("%p", res);
+	printf("\n");
 	return (buf);
 }

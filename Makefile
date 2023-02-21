@@ -2,7 +2,8 @@ NAME		= a.out
 
 CC			= gcc -g
 CFLAGS		= -Wall -Wextra
-BFLAGS		= -D BUFFER_SIZE=10
+N			= 5
+BFLAGS		= -D BUFFER_SIZE=$(N)
 
 SRC			= main.c get_next_line.c get_next_line_utils.c
 DEPS		= get_next_line.h

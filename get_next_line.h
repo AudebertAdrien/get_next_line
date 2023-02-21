@@ -7,7 +7,11 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
 char	*get_next_line(int fd);
-void	*ft_find_end_line(char *b);
+char	*ft_find_end_line(char *b);
 
 #endif

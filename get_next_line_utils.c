@@ -6,13 +6,13 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/21 11:14:10 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:39:23 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	*ft_find_end_line(char *b)
+char	*ft_find_end_line(char *b)
 {
 	int	i;
 
@@ -21,6 +21,7 @@ static void	*ft_find_end_line(char *b)
 	{
 		if (b[i] == '\n')
 			return (&b[i]);
+		i++;
 	}
 	return (NULL);
 }
