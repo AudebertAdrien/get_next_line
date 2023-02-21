@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/21 15:52:38 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:03:40 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_find_end_line(char *b)
 	return (0);
 }
 
-char	*ft_create_ptr(char *s, char *b)
+char	*ft_strjoin(char *s, char *b)
 {
 	char	*ptr;
 	int	i;
@@ -44,7 +44,7 @@ char	*ft_create_ptr(char *s, char *b)
 
 	i = 0;
 	j = 0;
-	ptr = (char *)malloc(sizeof(char *) * (s_len + b_len) + 1);
+	ptr = (char *)malloc(sizeof(char *) * (ft_strlen(s) + ft_strlen(b)) + 1);
 	if (!ptr)
 		return (NULL);
 	while (s[i])
