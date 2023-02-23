@@ -13,8 +13,8 @@
 # endif
 
 char	*get_next_line(int fd);
-int		ft_finds_byte_end_line(char *b);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_find_byte(const char *s);
 char	*ft_strjoin(const char *s, const char *b);
+size_t	ft_strlen(const char *str);
 
 #endif

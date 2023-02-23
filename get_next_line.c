@@ -6,75 +6,83 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/23 12:08:56 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:27:17 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read(int fd)
+char	*ft_read(char *stash, int fd)
 {
-	static char	*stash;
 	char		buf[BUFFER_SIZE + 1];
-	int			bytes_read;
 	int			is_found;
 
 	is_found = 0;
+	if (!stash)
+			stash = "";
 	while (!is_found)
 	{
-		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (!stash)
-			stash = "";
+		read(fd, buf, BUFFER_SIZE);
 		stash = ft_strjoin(stash, buf);
-		is_found = ft_finds_byte_end_line(stash);	
-		
 		if (!stash)
 			return (NULL);
-
-		if (is_found)
-			is_found = 1;
+		is_found = ft_find_byte(stash);
 	}
 	return (stash);
 }
 
-char *get_next_line(int fd)
+char	*ft_get_line(char *stash)
 {
-	return(ft_read(fd));
-}
-/*
-char *get_next_line(int fd)
-{
-	int		bytes_read;
-	int		is_found;
-	char	buf[BUFFER_SIZE + 1];
-	char	*ptr;
+	char	*line;
+	int		i;
+	int		j;
 
-	static char	*save;
-	is_found = 0;
-	while (!is_found || bytes_read == BUFFER_SIZE)
+	i = ft_find_byte(stash);
+	j = 0;
+	line = (char *)malloc(sizeof(char *) * i + 1);
+	while (j < i)
 	{
-		bytes_read = read(fd, buf, BUFFER_SIZE);
-		is_found = ft_finds_byte_end_line(buf);	
-
-		if (save)
-		{
-			ptr = ft_strjoin(save, buf);
-
-		}
-		
-		if (is_found)
-		{
-			save = ft_substr(buf, is_found, bytes_read);
-			ptr = ft_strjoin(ptr, ft_substr(buf, 0, is_found));
-			return (ptr);
-		}	
-
-		ptr = ft_strjoin(ptr, buf);
-		if (!ptr)
-			return (NULL);
+		line[j] = stash[j];
+		j++;
 	}
 
-	printf("\n");
-	return (ptr);
+	return (line);
 }
-*/
+
+char	*ft_clean_stash(char *stash)
+{
+	int		i;
+	int		j;
+	char	*new_stash;
+
+	j = 0;
+	i = ft_find_byte(stash);
+	new_stash = (char *)malloc(sizeof(char *) * (ft_strlen(stash) - i) + 1);
+	if (!new_stash)
+		return (NULL);
+	while (stash[i] != '\n' && stash[i])
+	{
+		new_stash[j] = stash[i];	
+		j++;
+		i++;
+	}
+	new_stash[j] = '\0';
+	return (new_stash);
+}
+
+char *get_next_line(int fd)
+{
+	static char	*stash;
+	char	*line;
+
+	stash = ft_read(stash, fd);
+	if (!stash)
+		return (NULL);
+	line = ft_get_line(stash);	
+	if (!line)
+		return (NULL);
+	stash = ft_clean_stash(stash);
+	if (!stash)
+		return (NULL);
+	return (line);
+}

@@ -6,13 +6,13 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/23 10:47:28 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:59:24 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -22,37 +22,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-	size_t	i;
-	size_t	s_len;
-
-	s_len = ft_strlen(s);
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (start >= s_len)
-	{
-		ptr = (malloc(1));
-		*ptr = '\0';
-		return (ptr);
-	}
-	if (len > s_len - start)
-		len = s_len - start;
-	ptr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ptr)
-		return (NULL);
-	while (i < len)
-	{
-		ptr[i] = s[start + i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-int	ft_finds_byte_end_line(char *b)
+int	ft_find_byte(const char *b)
 {
 	int	i;
 
