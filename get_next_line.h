@@ -9,12 +9,17 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
 int		ft_find_byte(const char *s);
-char	*ft_strjoin(const char *s, const char *b);
+char	*ft_strjoin(char *s, char *b);
 size_t	ft_strlen(const char *str);
+char	*ft_error(char *ptr);
+char	*ft_strchr(const char *s, int c);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
+
 
 #endif
