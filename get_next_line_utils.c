@@ -6,19 +6,11 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/26 16:22:41 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:38:55 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-
-char	*ft_error(char *ptr)
-{
-	free(ptr);
-	ptr = NULL;
-	return (NULL);
-}
 
 size_t	ft_strlen(const char *str)
 {
@@ -80,7 +72,10 @@ char	*ft_strjoin(char *s, char *b)
 	j = 0;
 	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s) + ft_strlen(b)) + 1);
 	if (!ptr)
-		return (ft_error(ptr));
+	{
+		free(ptr);
+		return (NULL);
+	}
 	while (s[i])
 	{
 		ptr[i] = s[i]; 

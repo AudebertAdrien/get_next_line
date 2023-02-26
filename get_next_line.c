@@ -6,11 +6,17 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/26 16:24:52 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:54:14 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_error(char *ptr)
+{
+	free(ptr);
+	return (NULL);
+}
 
 char	*ft_clean_stash(char *stash)
 {
@@ -22,13 +28,12 @@ char	*ft_clean_stash(char *stash)
 	j = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	new_stash = (char *)malloc(sizeof(char) * (ft_strlen(stash) - i) + 1);
-//	new_stash = (char *)ft_calloc((ft_strlen(stash) - i)+1, sizeof(char));
+	new_stash = (char *)ft_calloc((ft_strlen(stash) - i) + 1, sizeof(char));
 	if (!new_stash)
 		return (ft_error(new_stash));
 	while (stash[i + j]) 
 	{
-		new_stash[j] = stash[i + j];
+		new_stash[j] = stash[i + j + 1];
 		j++;
 	}
 	new_stash[j] = '\0';
@@ -46,8 +51,7 @@ char	*ft_get_line(char *stash)
 	j = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	//line = ft_calloc((i + 1), sizeof(char));
-	line = (char *)malloc(sizeof(char) * i + 1);
+	line = ft_calloc((i + 1), sizeof(char));
 	if (!line)
 		return (ft_error(line));
 	while (j < i)
@@ -66,7 +70,6 @@ char	*ft_read(char *stash, int fd)
 
 	bytes_read = BUFFER_SIZE;
 	buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-//	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
 		return (ft_error(buf));
 	while (!ft_strchr(stash, '\n') && bytes_read == BUFFER_SIZE) 
@@ -92,7 +95,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	if (!stash)
-		stash = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		stash = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	stash = ft_read(stash, fd);
 	if (!stash)
 		return (NULL);
