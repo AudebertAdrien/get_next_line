@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/26 15:14:08 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:24:52 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ char	*ft_read(char *stash, int fd)
 	int			bytes_read;
 
 	bytes_read = BUFFER_SIZE;
-//	buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+//	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
 		return (ft_error(buf));
 	while (!ft_strchr(stash, '\n') && bytes_read == BUFFER_SIZE) 
@@ -91,10 +91,8 @@ char	*get_next_line(int fd)
 	
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	
 	if (!stash)
 		stash = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	//	stash = malloc((BUFFER_SIZE) * sizeof(char));
 	stash = ft_read(stash, fd);
 	if (!stash)
 		return (NULL);

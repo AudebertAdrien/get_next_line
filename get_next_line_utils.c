@@ -6,11 +6,19 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/26 15:11:47 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:22:41 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+
+char	*ft_error(char *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+	return (NULL);
+}
 
 size_t	ft_strlen(const char *str)
 {
@@ -21,14 +29,6 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-
-char	*ft_error(char *ptr)
-{
-	free(ptr);
-	ptr = NULL;
-	return (NULL);
-}
-
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -45,7 +45,6 @@ char	*ft_strchr(const char *s, int c)
 		return (str);
 	return (0);
 }
-
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -69,22 +68,6 @@ void	ft_bzero(void *s, size_t n)
 	src_cpy = (unsigned char *)s;
 	while (n--)
 		*src_cpy++ = '\0';
-}
-
-
-
-int	ft_find_byte(const char *str)
-{
-	int	b;
-
-	b = 0;
-	while (str[b])
-	{
-		if (str[b] == '\n')
-			return (b + 1);
-		b++;
-	}
-	return (0);
 }
 
 char	*ft_strjoin(char *s, char *b)
