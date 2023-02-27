@@ -6,11 +6,20 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/27 11:29:24 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:02:13 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_free(char *stash, char *buf)
+{
+	char	*temp;
+
+	temp = ft_strjoin(stash, buf);
+	free(stash);
+	return (temp);
+}
 
 char	*ft_clean_stash(char *stash)
 {
@@ -22,7 +31,12 @@ char	*ft_clean_stash(char *stash)
 	j = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	new_stash = (char *)ft_calloc((ft_strlen(stash) - i) + 1, sizeof(char));
+	if(!stash[i])
+	{
+		free(stash);
+		return (NULL);
+	}
+	new_stash = ft_calloc((ft_strlen(stash) - i + 1), sizeof(char));
 	if (!new_stash)
 		return (NULL);
 	while (stash[i + j]) 
@@ -30,7 +44,6 @@ char	*ft_clean_stash(char *stash)
 		new_stash[j] = stash[i + j + 1];
 		j++;
 	}
-	new_stash[j] = '\0';
 	free(stash);
 	return (new_stash);
 }
@@ -43,17 +56,23 @@ char	*ft_get_line(char *stash)
 
 	i = 0;
 	j = 0;
+	if (!stash[i])
+		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i++;
 	line = ft_calloc((i + 2), sizeof(char));
 	if (!line)
 		return (NULL);
-	while (j < i + 1)
+	while (stash[j] && stash[j] != '\n')
 	{
 		line[j] = stash[j];
 		j++;
 	}
-	line[j] = '\0';
+	if (stash[j] && stash[j] == '\n')
+	{
+		line[j] = '\n';
+		j++;
+	}
 	return (line);
 }
 
@@ -62,10 +81,12 @@ char	*ft_read(char *stash, int fd)
 	char		*buf;
 	int			bytes_read;
 
-	bytes_read = BUFFER_SIZE;
+	if(!stash)
+		stash = ft_calloc(1, 1);
 	buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buf)
-		return (NULL);
+			return (NULL);
+	bytes_read = 1;
 	while (!ft_strchr(stash, '\n') && bytes_read > 0) 
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
@@ -75,7 +96,7 @@ char	*ft_read(char *stash, int fd)
 			return (NULL);
 		}
 		buf[bytes_read] = '\0';
-		stash = ft_strjoin(stash, buf);
+		stash = ft_free(stash, buf);
 		if (!stash)
 			return (NULL);
 	}
@@ -90,18 +111,10 @@ char	*get_next_line(int fd)
 	
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (!stash)
-	{
-		stash = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-		if(!stash)
-			return (NULL);
-	}
 	stash = ft_read(stash, fd);
 	if (!stash)
 		return (NULL);
 	line = ft_get_line(stash);
-	if (!line)
-		return (NULL);
 	stash = ft_clean_stash(stash);
 	return (line);
 }

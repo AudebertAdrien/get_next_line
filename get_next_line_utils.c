@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/26 16:38:55 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:47:28 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-
+	
 	i = 0;
 	while (str[i])
 		i++;
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
-
+	
 	str = (char *)s;
 	while (*str)
 	{
@@ -46,7 +46,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (malloc(0));
 	if (nmemb * size / size != nmemb)
 		return (NULL);
-	ptr = (void *)malloc(nmemb * size);
+	ptr = malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, nmemb * size);
@@ -55,9 +55,9 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*src_cpy;
+	char	*src_cpy;
 
-	src_cpy = (unsigned char *)s;
+	src_cpy = (char *)s;
 	while (n--)
 		*src_cpy++ = '\0';
 }
@@ -72,10 +72,7 @@ char	*ft_strjoin(char *s, char *b)
 	j = 0;
 	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s) + ft_strlen(b)) + 1);
 	if (!ptr)
-	{
-		free(ptr);
 		return (NULL);
-	}
 	while (s[i])
 	{
 		ptr[i] = s[i]; 
@@ -87,6 +84,5 @@ char	*ft_strjoin(char *s, char *b)
 		j++;
 	}
 	ptr[i + j] = '\0';
-	free(s);
 	return (ptr);
 }
