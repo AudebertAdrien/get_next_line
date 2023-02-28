@@ -1,15 +1,15 @@
 NAME		= a.out
 
-CC			= gcc
+CC		= gcc
 CFLAGS		= -Wall -Wextra -Wextra
 
-SRC			= main.c get_next_line.c get_next_line_utils.c
+SRC		= main.c get_next_line.c get_next_line_utils.c
 SRC_B		= main.c get_next_line_bonus.c get_next_line_utils_bonus.c
 
 DEPS		= get_next_line.h
 DEPS_B		= get_next_line_bonus.h
 
-OBJ			= $(SRC:.c=.o)
+OBJ		= $(SRC:.c=.o)
 OBJ_B		= $(SRC_B:.c=.o)
 
 all: $(NAME)
