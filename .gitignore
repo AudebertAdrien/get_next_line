@@ -4,6 +4,7 @@ a.out
 *.sw*
 *.o
 *.a
+Makefile
 libftTester/
 libft-unit-test/
 war-machine/
