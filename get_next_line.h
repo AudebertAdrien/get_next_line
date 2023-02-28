@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/28 19:19:12 by aaudeber          #+#    #+#             */
+/*   Updated: 2023/02/28 19:19:19 by aaudeber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
@@ -13,13 +25,10 @@
 # endif
 
 char	*get_next_line(int fd);
-int		ft_find_byte(const char *s);
 char	*ft_strjoin(char *s, char *b);
 size_t	ft_strlen(const char *str);
-char	*ft_error(char *ptr);
 char	*ft_strchr(const char *s, int c);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
-
 
 #endif
