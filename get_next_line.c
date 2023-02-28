@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/27 18:02:13 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:47:19 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_get_line(char *stash)
 
 	i = 0;
 	j = 0;
-	if (!stash[i])
+	if (!*stash)
 		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i++;
