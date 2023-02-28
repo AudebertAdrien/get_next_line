@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/28 08:47:19 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:37:09 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_clean_stash(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	new_stash = ft_calloc((ft_strlen(stash) - i + 1), sizeof(char));
+	new_stash = malloc(sizeof(char) * (ft_strlen(stash) - i) + 1);
 	if (!new_stash)
 		return (NULL);
 	while (stash[i + j]) 
@@ -82,8 +82,11 @@ char	*ft_read(char *stash, int fd)
 	int			bytes_read;
 
 	if(!stash)
-		stash = ft_calloc(1, 1);
-	buf = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	{
+		stash = malloc(1);
+		stash[0] = '\0';
+	}
+	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
 			return (NULL);
 	bytes_read = 1;
