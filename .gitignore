@@ -1,0 +1,11 @@
+README.md
+*.txt
+a.out
+*.sw*
+*.o
+*.a
+libftTester/
+libft-unit-test/
+war-machine/
+get_next_line_main/
+gnlTester/
