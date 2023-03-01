@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/03/01 09:55:16 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:00:22 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*ft_read(char *stash, int fd)
 	int			bytes_read;
 
 	if (!stash)
-		stash = ft_alloc(1, 1);
+		stash = ft_calloc(1, 1);
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
 		return (NULL);
