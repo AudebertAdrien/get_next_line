@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:56:24 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/28 18:45:34 by motoko           ###   ########.fr       */
+/*   Updated: 2023/03/01 09:55:16 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_clean_stash(char *stash)
 	j = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	if(!stash[i])
+	if (!stash[i])
 	{
 		free(stash);
 		return (NULL);
@@ -39,7 +39,7 @@ char	*ft_clean_stash(char *stash)
 	new_stash = malloc(sizeof(char) * (ft_strlen(stash) - i) + 1);
 	if (!new_stash)
 		return (NULL);
-	while (stash[i + j]) 
+	while (stash[i + j])
 	{
 		new_stash[j] = stash[i + j + 1];
 		j++;
@@ -81,16 +81,13 @@ char	*ft_read(char *stash, int fd)
 	char		*buf;
 	int			bytes_read;
 
-	if(!stash)
-	{
-		stash = malloc(1);
-		stash[0] = '\0';
-	}
+	if (!stash)
+		stash = ft_alloc(1, 1);
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
-			return (NULL);
+		return (NULL);
 	bytes_read = 1;
-	while (!ft_strchr(stash, '\n') && bytes_read > 0) 
+	while (!ft_strchr(stash, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -110,8 +107,8 @@ char	*ft_read(char *stash, int fd)
 char	*get_next_line(int fd)
 {
 	static char	*stash[1024];
-	char	*line;
-	
+	char		*line;
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	stash[fd] = ft_read(stash[fd], fd);

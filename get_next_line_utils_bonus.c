@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:09:37 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/28 11:41:27 by motoko           ###   ########.fr       */
+/*   Updated: 2023/03/01 09:53:17 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (str[i])
 		i++;
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
-	
+
 	str = (char *)s;
 	while (*str)
 	{
@@ -65,9 +65,9 @@ void	ft_bzero(void *s, size_t n)
 char	*ft_strjoin(char *s, char *b)
 {
 	char	*ptr;
-	int	i;
-	int	j;
-	int	size;
+	int		i;
+	int		j;
+	int		size;
 
 	i = 0;
 	j = 0;
@@ -77,12 +77,12 @@ char	*ft_strjoin(char *s, char *b)
 		return (NULL);
 	while (s[i])
 	{
-		ptr[i] = s[i]; 
+		ptr[i] = s[i];
 		i++;
 	}
 	while (b[j])
 	{
-		ptr[i + j] = b[j]; 
+		ptr[i + j] = b[j];
 		j++;
 	}
 	ptr[i + j] = '\0';
